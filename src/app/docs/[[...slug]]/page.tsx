@@ -38,7 +38,7 @@ export default async function DocPage({params}: {params: Promise<DocPageProps["p
 
   return (
     <div>
-      <h1>{doc.title}</h1>
+      <h1 className="">{doc.title}</h1>
       <div>{doc.description}</div>
       <MDXContent code={doc.body.code} />
     </div>

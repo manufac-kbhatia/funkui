@@ -1,6 +1,9 @@
 "use client";
 
 import {useMDXComponent} from "next-contentlayer2/hooks";
+import type {MDXComponents as MDXComponentsType} from "mdx/types";
+import { MDXComponents } from "./mdx-components";
+
 
 
 interface MDXContentProps {
@@ -12,7 +15,7 @@ export function MDXContent({code}: MDXContentProps) {
 
   return (
     <div className="mdx prose"> {/* prose is plugin in tailwind that adds default properties back to all html elements like headings */}
-      <Component />
+      <Component components={MDXComponents as MDXComponentsType} />
     </div>
   );
 }
