@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.33.0",
+    "clsx": "^2.1.1",
     "contentlayer2": "^0.5.8",
     "date-fns": "^4.1.0",
+    "github-slugger": "^2.0.0",
     "next": "15.3.2",
     "next-contentlayer2": "^0.5.8",
     "react": "^19.0.0",
