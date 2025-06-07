@@ -2,11 +2,13 @@ import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 import GithubSlugger from "github-slugger"
+import RawPlugin from 'esbuild-plugin-raw'
 
-
+// Ref: https://contentlayer.dev/docs/reference/source-files/define-document-type-eb9db60e
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `docs/**/*.mdx`,
+  // Ref: https://contentlayer.dev/docs/sources/files/mdx-d747e46d#mdx-content-type
   contentType: "mdx",
   fields: {
     title: { type: 'string', required: true },
@@ -47,7 +49,15 @@ export const Doc = defineDocumentType(() => ({
   },
 }))
 
+//Ref: https://contentlayer.dev/docs/reference/source-files/make-source-a5ba4922
 export default makeSource({ contentDirPath: './src/content', documentTypes: [Doc], mdx: {
+    // Ref: https://contentlayer.dev/docs/sources/files/mdx-d747e46d#mdx-plugins-remarkrehype
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug]
+    rehypePlugins: [rehypeSlug],
+    esbuildOptions(options) {
+      options.plugins ||= [];
+      options.plugins.unshift(RawPlugin());
+      return options;
+    },
 }, })
+
